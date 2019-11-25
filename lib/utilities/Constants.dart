@@ -1,4 +1,4 @@
-import 'package:footstat/classes/Joueur.dart';
+import 'package:footstat/models/Joueur.dart';
 
 List<Joueur> lstJoueurs = List();
 

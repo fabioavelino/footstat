@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'utilities/Constants.dart';
+import 'package:footstat/utilities/Constants.dart';
+import 'CreerJoueur.dart';
 
 
 
@@ -30,7 +31,12 @@ void checkList(){ //Si la liste est vide il faudra afficher un message invitant 
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Votre effectif'),
+        centerTitle: true,
+        backgroundColor: Colors.black,
+          title: Text('Votre effectif', 
+          style: TextStyle(
+            color: Colors.yellow ),
+         ),
       ),
       body: Container(
           // Center is a layout widget. It takes a single child and positions it
@@ -45,10 +51,10 @@ void checkList(){ //Si la liste est vide il faudra afficher un message invitant 
                   alignment: Alignment.bottomRight,
                   child: FlatButton(
                     onPressed: () {
-                      Navigator.push(
+                      Navigator.push( //tu veux faire les routes d'une autre façon ? 
                         context,
                         MaterialPageRoute(builder: (context) {
-                          return EffectifPage();
+                          return creerJoueur();
                         }),
                       );
                     },

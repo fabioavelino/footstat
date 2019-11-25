@@ -8,4 +8,8 @@ class Joueur {
   int tempsDeJeu;
   int cartonsJaunes;
   int cartonsRouges;
+
+  Joueur(){this.numero= numero; this.nom = nom; this.prenom = prenom; this.poste = poste; 
+          this.buts = buts; this.passesD = passesD; this.tempsDeJeu = tempsDeJeu; 
+          this.cartonsJaunes = cartonsJaunes; this.cartonsRouges = cartonsRouges;}
 }
