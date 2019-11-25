@@ -39,8 +39,6 @@ void checkList(){ //Si la liste est vide il faudra afficher un message invitant 
          ),
       ),
       body: Container(
-          // Center is a layout widget. It takes a single child and positions it
-          // in the middle of the parent.
           child: Column(
             children: <Widget>[
               Container(

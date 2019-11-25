@@ -34,7 +34,14 @@ class _customFormState extends State<customForm> {
   Widget build(BuildContext context) {
     return Form(
       key: _formKey,
-      // je vais inserer les textField ici
+      child: TextFormField(
+        validator: (value) {
+        if (value.isEmpty) {
+          return 'Please enter some text';
+        }
+        return null;
+        },
+      ),
     );
   }
 }
