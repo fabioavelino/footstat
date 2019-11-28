@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:footstat/utilities/Constants.dart';
 
 class creerJoueur extends StatefulWidget {
   @override
@@ -31,8 +32,12 @@ class customForm extends StatefulWidget {
 final _formKey = GlobalKey<FormState>();
 
 class _customFormState extends State<customForm> {
+  List lstPosts = getLstPosts();
+  String post = getLstPosts().first;
+
    @override
   Widget build(BuildContext context) {
+    print(post);
     return Form(
       key: _formKey,
       child: Column(
@@ -61,10 +66,10 @@ class _customFormState extends State<customForm> {
             },
           ),
           TextFormField(
-            keyboardType: TextInputType.number,
+            keyboardType: TextInputType.number, //Affiche le clavier numérique
             inputFormatters: <TextInputFormatter>[
-        WhitelistingTextInputFormatter.digitsOnly
-    ],
+              WhitelistingTextInputFormatter.digitsOnly // force l'usage du clavier numérique
+            ],
             decoration: InputDecoration(
               labelText: 'Numero'
             ),
