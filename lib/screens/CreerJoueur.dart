@@ -65,6 +65,7 @@ class _customFormState extends State<customForm> {
           TextFormField(
             keyboardType: TextInputType.number, //Affiche le clavier numérique
             inputFormatters: <TextInputFormatter>[
+              new LengthLimitingTextInputFormatter(2),
               WhitelistingTextInputFormatter.digitsOnly // force l'usage du clavier numérique
             ],
             decoration: InputDecoration(
