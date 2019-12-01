@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:footstat/utilities/Constants.dart';
+import 'package:footstat/widgets/dropDownPost.dart';
 
 class creerJoueur extends StatefulWidget {
   @override
@@ -32,12 +32,9 @@ class customForm extends StatefulWidget {
 final _formKey = GlobalKey<FormState>();
 
 class _customFormState extends State<customForm> {
-  List lstPosts = getLstPosts();
-  String post = getLstPosts().first;
 
    @override
   Widget build(BuildContext context) {
-    print(post);
     return Form(
       key: _formKey,
       child: Column(
@@ -80,14 +77,15 @@ class _customFormState extends State<customForm> {
               return null;
             },
           ),
+          SizedBox(
+            height: 10.0,
+          ),
+          DropDown(),
           Padding(
             padding: const EdgeInsets.symmetric(vertical: 16.0),
             child: RaisedButton(
               onPressed: () {
-                // Validate returns true if the form is valid, or false
-                // otherwise.
-                if (_formKey.currentState.validate()) {
-                  // If the form is valid, display a Snackbar.
+                if (_formKey.currentState.validate()) { //Verification de la validité de la Form
                   Scaffold.of(context)
                       .showSnackBar(SnackBar(content: Text('Joueur ajouté')));
                 }

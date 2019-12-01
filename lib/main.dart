@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:footstat/screens/Accueil.dart';
 import 'screens/Effectif.dart';
 
 void main() => runApp(MyApp());
@@ -31,9 +32,10 @@ class _MyHomePageState extends State<MyHomePage> {
 
   
 
-  @override // il faudrait peut etre créer une page d'accueil et tout transferer dessus histoire de pas charger le main
+  @override 
   Widget build(BuildContext context) {
-    return Scaffold(
+    return MaterialApp(
+      home: Scaffold(
       appBar: AppBar(    // si tu arrives a mettre ca dans un style histoire que je vois comment tu veux le code histoire qu'on s'aligne
         centerTitle: true,
         backgroundColor: Colors.black,
@@ -42,31 +44,7 @@ class _MyHomePageState extends State<MyHomePage> {
             color: Colors.yellow ),
          ),
       ),
-      body: Center(
-        child: Column(
-          children: <Widget>[
-            Expanded(
-              child: Align(
-                alignment: Alignment.bottomRight,
-                child: FlatButton(
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) {
-                        return EffectifPage();
-                      }),
-                    );
-                  },
-                  color: Colors.blue,
-                  textColor: Colors.white,
-                  child: Text(
-                    'Voir effectif',
-                  ),
-                ),
-              ),
-            ),
-          ],
-        ),
+      body: Accueil(),
       ),
     );
   }
