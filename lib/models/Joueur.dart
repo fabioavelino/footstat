@@ -1,7 +1,7 @@
 class Joueur {
   int numero;
-  String nom;
-  String prenom;
+  String name;
+  String firstName;
   String poste;
   int buts ;
   int passesD;
@@ -9,7 +9,5 @@ class Joueur {
   int cartonsJaunes;
   int cartonsRouges;
 
-  Joueur(){this.numero= numero; this.nom = nom; this.prenom = prenom; this.poste = poste; 
-          this.buts = buts; this.passesD = passesD; this.tempsDeJeu = tempsDeJeu; 
-          this.cartonsJaunes = cartonsJaunes; this.cartonsRouges = cartonsRouges;}
+  Joueur(int numero, String name, String firstName){this.numero = numero; this.name = name; this.firstName = firstName;}
 }

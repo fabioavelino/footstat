@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:footstat/models/Joueur.dart';
 import 'package:footstat/widgets/dropDownPost.dart';
 
 class creerJoueur extends StatefulWidget {
@@ -32,6 +33,16 @@ class customForm extends StatefulWidget {
 final _formKey = GlobalKey<FormState>();
 
 class _customFormState extends State<customForm> {
+  String name;
+  String firstName;
+  int number;
+  String post;
+
+
+  ajouterJoueur(){
+    Joueur joueur =  new Joueur(number, name, firstName);
+    print(joueur.numero);
+  }
 
    @override
   Widget build(BuildContext context) {
@@ -50,22 +61,25 @@ class _customFormState extends State<customForm> {
               }
               return null;
             },
+            onSaved: (val) => setState(()=> name = val),
           ),
           TextFormField(
             decoration: InputDecoration(
               labelText: 'Nom'
             ),
             validator: (value) {
+              name = value;
               if (value.isEmpty) {
                 return 'Veuillez remplir le champ';
               }
               return null;
             },
+            onSaved: (val) => setState(()=> firstName = val),
           ),
           TextFormField(
             keyboardType: TextInputType.number, //Affiche le clavier numérique
             inputFormatters: <TextInputFormatter>[
-              new LengthLimitingTextInputFormatter(2),
+              new LengthLimitingTextInputFormatter(2), // limitation des maillots de 0 à 99
               WhitelistingTextInputFormatter.digitsOnly // force l'usage du clavier numérique
             ],
             decoration: InputDecoration(
@@ -77,6 +91,7 @@ class _customFormState extends State<customForm> {
               }
               return null;
             },
+            onSaved: (val) => setState(()=> number = int.parse(val)),
           ),
           SizedBox(
             height: 10.0,
@@ -86,12 +101,13 @@ class _customFormState extends State<customForm> {
             padding: const EdgeInsets.symmetric(vertical: 16.0),
             child: RaisedButton(
               onPressed: () {
+                ajouterJoueur();
                 if (_formKey.currentState.validate()) { //Verification de la validité de la Form
                   Scaffold.of(context)
                       .showSnackBar(SnackBar(content: Text('Joueur ajouté')));
                 }
               },
-              child: Text('Submit'),
+              child: Text('Créer'),
             ),
           ),
         ],

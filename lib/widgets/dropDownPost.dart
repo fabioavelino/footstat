@@ -38,6 +38,9 @@ class _DropDownState extends State<DropDown> {
       _poste = poste;
     });
   }
+  String getPoste(){
+    return _poste.nom;
+  }
 
   @override
 Widget build(BuildContext context) {
