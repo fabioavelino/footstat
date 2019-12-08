@@ -22,7 +22,6 @@ class _DropDownState extends State<DropDown> {
   List<DropdownMenuItem<Poste>> buildDropdownMenuItems(List  lstPosts){
     List<DropdownMenuItem<Poste>> items = List();
     for(Poste post in lstPosts){
-      print(post.nom);
       items.add(
         DropdownMenuItem(
           value: post, 

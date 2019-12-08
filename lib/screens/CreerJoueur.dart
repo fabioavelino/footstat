@@ -41,6 +41,7 @@ class _customFormState extends State<customForm> {
 
   ajouterJoueur(){
     Joueur joueur =  new Joueur(number, name, firstName);
+    print(name);
     print(joueur.numero);
   }
 
@@ -96,13 +97,14 @@ class _customFormState extends State<customForm> {
           SizedBox(
             height: 10.0,
           ),
-          DropDown(),
+          DropDown(
+          ),
           Padding(
             padding: const EdgeInsets.symmetric(vertical: 16.0),
             child: RaisedButton(
               onPressed: () {
-                ajouterJoueur();
                 if (_formKey.currentState.validate()) { //Verification de la validité de la Form
+                   ajouterJoueur();
                   Scaffold.of(context)
                       .showSnackBar(SnackBar(content: Text('Joueur ajouté')));
                 }
