@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:footstat/models/Joueur.dart';
-import 'package:footstat/widgets/dropDownPost.dart';
+import 'package:dropdown_formfield/dropdown_formfield.dart';
 
 class creerJoueur extends StatefulWidget {
   @override
@@ -33,15 +33,16 @@ class customForm extends StatefulWidget {
 final _formKey = GlobalKey<FormState>();
 
 class _customFormState extends State<customForm> {
-  String name;
-  String firstName;
-  int number;
-  String post;
+  String _name;
+  String _firstName;
+  int _number;
+  String _post;
 
 
   ajouterJoueur(){
-    Joueur joueur =  new Joueur(number, name, firstName);
-    print(name);
+    Joueur joueur =  new Joueur(_number, _name, _firstName);
+    
+    print(_name);
     print(joueur.numero);
   }
 
@@ -50,55 +51,101 @@ class _customFormState extends State<customForm> {
     return Form(
       key: _formKey,
       child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: <Widget>[
-          TextFormField(
-            decoration: InputDecoration(
-              labelText: 'Prénom'
+          Padding(
+            padding: const EdgeInsets.only(top: 20.0, left: 20, right: 20),
+              child: TextFormField(
+              autofocus: true,
+              decoration: InputDecoration(
+                 border: OutlineInputBorder(),
+                labelText: 'Prénom'
+              ),
+              validator: (value) {
+                if (value.isEmpty) {
+                  return 'Veuillez remplir le champ';
+                }
+                return null;
+              },
+              onSaved: (val) => setState(()=> _name = val),
             ),
-            validator: (value) {
-              if (value.isEmpty) {
-                return 'Veuillez remplir le champ';
-              }
-              return null;
-            },
-            onSaved: (val) => setState(()=> name = val),
           ),
-          TextFormField(
-            decoration: InputDecoration(
-              labelText: 'Nom'
+          Padding(
+            padding: const EdgeInsets.only(top: 20, left: 20, right: 20),
+                      child: TextFormField(
+              decoration: InputDecoration(
+                border: OutlineInputBorder(),
+                labelText: 'Nom'
+              ),
+              validator: (value) {
+                _name = value;
+                if (value.isEmpty) {
+                  return 'Veuillez remplir le champ';
+                }
+                return null;
+              },
+              onSaved: (val) => setState(()=> _firstName = val),
             ),
-            validator: (value) {
-              name = value;
-              if (value.isEmpty) {
-                return 'Veuillez remplir le champ';
-              }
-              return null;
-            },
-            onSaved: (val) => setState(()=> firstName = val),
           ),
-          TextFormField(
-            keyboardType: TextInputType.number, //Affiche le clavier numérique
-            inputFormatters: <TextInputFormatter>[
-              new LengthLimitingTextInputFormatter(2), // limitation des maillots de 0 à 99
-              WhitelistingTextInputFormatter.digitsOnly // force l'usage du clavier numérique
-            ],
-            decoration: InputDecoration(
-              labelText: 'Numero'
+          Padding(
+            padding: const EdgeInsets.only(top: 20, left: 20, right: 20),
+                      child: TextFormField(
+              keyboardType: TextInputType.number, //Affiche le clavier numérique
+              inputFormatters: <TextInputFormatter>[
+                new LengthLimitingTextInputFormatter(2), // limitation des maillots de 0 à 99
+                WhitelistingTextInputFormatter.digitsOnly // force l'usage du clavier numérique
+              ],
+              decoration: InputDecoration(
+                 border: OutlineInputBorder(),
+                labelText: 'Numero'
+              ),
+              validator: (value) {
+                if (value.isEmpty) {
+                  return 'Veuillez remplir le champ';
+                }
+                return null;
+              },
+              onSaved: (val) => setState(()=> _number = int.parse(val)),
             ),
-            validator: (value) {
-              if (value.isEmpty) {
-                return 'Veuillez remplir le champ';
-              }
-              return null;
-            },
-            onSaved: (val) => setState(()=> number = int.parse(val)),
           ),
-          SizedBox(
-            height: 10.0,
-          ),
-          DropDown(
-          ),
+          Container(
+                padding: const EdgeInsets.only(top: 20, left: 20, right: 20),
+                child: DropDownFormField(
+                  titleText: 'Poste du joueur',
+                  hintText: 'Choisissez le poste',
+                  value: _post,
+                  onSaved: (value) {
+                    setState(() {
+                      _post = value;
+                    });
+                  },
+                  onChanged: (value) {
+                    setState(() {
+                      _post = value;
+                    });
+                  },
+                  dataSource: [
+                    {
+                      "display": "Gardien",
+                      "value": "Gardien",
+                    },
+                    {
+                      "display": "Defenseur",
+                      "value": "Defenseur",
+                    },
+                    {
+                      "display": "Milieu",
+                      "value": "Milieu",
+                    },
+                    {
+                      "display": "Attaquant",
+                      "value": "Attaquant",
+                    },
+                  ],
+                  textField: 'display',
+                  valueField: 'value',
+                ),
+              ),
           Padding(
             padding: const EdgeInsets.symmetric(vertical: 16.0),
             child: RaisedButton(
